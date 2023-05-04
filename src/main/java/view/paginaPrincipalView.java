@@ -1,5 +1,7 @@
 package view;
 
+import model.Cafeteria;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,6 +41,12 @@ public class paginaPrincipalView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+        mostrarTodosLosCafesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new mostrarCafesView(new Cafeteria().obtenerCafes());
             }
         });
 

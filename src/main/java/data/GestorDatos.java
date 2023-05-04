@@ -14,11 +14,69 @@ public class GestorDatos {
 	}
 
 	public ArrayList<Cafe> obtenerCafes() {
-		throw new UnsupportedOperationException();
+		String textoArchivo = "";
+		ArrayList<Cafe> cafesEncontrados=new ArrayList<>();
+		try {
+			File archivo = new File(this.direccionArchivo);
+			if (!archivo.exists()) {
+				archivo.createNewFile();
+			}
+			// Comprobamos si existe
+			FileReader fileReader = new FileReader(archivo);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			//Lee cada linea del archivo hasta que la linea sea nula
+			while ((textoArchivo = bufferedReader.readLine()) != null) {
+				String[] data = textoArchivo.split(",");
+				if(data.length>=6){
+					cafesEncontrados.add(new Cafe(Integer.parseInt(data[0]),Integer.parseInt(data[1]),data[2],data[3]));
+
+				}
+			}
+			//Con eso corroboramos que el cliente no esta registrado por RUT
+			fileReader.close();
+			bufferedReader.close();
+			return cafesEncontrados;
+		} catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
+			return null;
+		}
 	}
 
 	public boolean eliminarCafe(Cafe cafe) {
-		throw new UnsupportedOperationException();
+		try {
+			// Abrir el archivo de texto en modo de lectura
+			File archivo = new File("informacion.txt");
+			FileReader lector = new FileReader(archivo);
+			BufferedReader bufferLector = new BufferedReader(lector);
+
+			// Leer el contenido del archivo línea por línea
+			String linea;
+			String contenido = "";
+			while ((linea = bufferLector.readLine()) != null) {
+				if (!linea.startsWith(cafe.getGCafe()+",")) {
+					contenido += linea + "\n";
+				}
+			}
+
+			// Cerrar el archivo de lectura
+			bufferLector.close();
+			lector.close();
+
+			// Abrir el archivo de texto en modo de escritura
+			FileWriter escritor = new FileWriter(archivo);
+			BufferedWriter bufferEscritor = new BufferedWriter(escritor);
+
+			// Escribir el contenido modificado en el archivo de texto
+			bufferEscritor.write(contenido);
+
+			// Cerrar el archivo de escritura
+			bufferEscritor.close();
+			escritor.close();
+			return  true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean agregarCafe(Cafe cafe) {

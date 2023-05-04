@@ -1,5 +1,6 @@
 package controller;
 
+import data.GestorDatos;
 import model.Cafe;
 import model.Cafeteria;
 
@@ -14,7 +15,8 @@ public class cafeteriaController {
 	}
 
 	public ArrayList<Cafe> obtenerCafes() {
-		throw new UnsupportedOperationException();
+		Cafeteria cafeteria=new Cafeteria();
+		return cafeteria.obtenerCafes();
 	}
 
 	public boolean modificarCafeteria(Cafeteria cafeteria) {

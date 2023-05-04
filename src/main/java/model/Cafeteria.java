@@ -38,6 +38,10 @@ public class Cafeteria {
 		GestorDatos gestorDatos=new GestorDatos("cafes.txt");
 		return gestorDatos.agregarCafe(cafe);
 	}
+	public ArrayList<Cafe> obtenerCafes(){
+		GestorDatos gestorDatos=new GestorDatos("cafes.txt");
+		return gestorDatos.obtenerCafes();
+	}
 	public boolean eliminarCafe(){
 		return true;
 	}
