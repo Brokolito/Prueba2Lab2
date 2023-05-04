@@ -41,6 +41,8 @@ public class eliminarCafeView extends JFrame {
 				boolean result=cafeteriaController.eliminarCafe(new Cafe(Integer.parseInt(cafe[0]),Integer.parseInt(cafe[1]),cafe[2],cafe[3]));
 				if(result){
 					JOptionPane.showMessageDialog(null,"Se elimino correctamente");
+				}else{
+					JOptionPane.showMessageDialog(null,"Ha ocurrdo un problema");
 				}
 			}
 		});
