@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class eliminarCafeView extends JFrame {
 
@@ -30,6 +31,17 @@ public class eliminarCafeView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				new paginaPrincipalView();
 				dispose();
+			}
+		});
+		eliminarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] cafe= Objects.requireNonNull(comboBox1.getSelectedItem()).toString().split(",");
+				cafeteriaController cafeteriaController=new cafeteriaController();
+				boolean result=cafeteriaController.eliminarCafe(new Cafe(Integer.parseInt(cafe[0]),Integer.parseInt(cafe[1]),cafe[2],cafe[3]));
+				if(result){
+					JOptionPane.showMessageDialog(null,"Se elimino correctamente");
+				}
 			}
 		});
 	}
