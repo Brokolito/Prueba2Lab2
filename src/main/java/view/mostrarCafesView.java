@@ -21,7 +21,6 @@ public class mostrarCafesView extends JFrame{
 
     }
     public void crearTabla(ArrayList<Cafe> cafes){
-        //String modelo, String marca, String color, int anho, int precio, int kilometraje
         Object[][] datos = new Object[cafes.size()][3];
         for (int i = 0; i <cafes.size(); i++) {
             Cafe cafe=cafes.get(i);
