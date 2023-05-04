@@ -1,6 +1,10 @@
 package view;
 
+import controller.cafeteriaController;
+import model.Cafe;
+
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class eliminarCafeView extends JFrame {
 
@@ -23,6 +27,10 @@ public class eliminarCafeView extends JFrame {
 	}
 
 	public void inicializarComboBox() {
-		throw new UnsupportedOperationException();
+		cafeteriaController cafeteriaController=new cafeteriaController();
+		ArrayList<Cafe> cafes= cafeteriaController.obtenerCafes();
+		for (int i = 0; i <cafes.size() ; i++) {
+			comboBox1.addItem(cafes.get(i));
+		}
 	}
 }
