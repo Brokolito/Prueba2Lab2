@@ -39,6 +39,7 @@ public class GestorDatos {
 					+cafe.getSize()+","+cafe.getOptIngrediente());
 			bufferedWriter.close();
 			fileWriter.close();
+
 			return true;
 		}catch (Exception e){
 			System.out.println("Error al ingresar hora de llegada, favor contactar con administrador");
@@ -47,26 +48,42 @@ public class GestorDatos {
 	}
 
 	public boolean modificaCafeteria(Cafeteria cafeteria) {
-		String textoArchivo = "";
 		try {
+			// Abrir el archivo de texto en modo de lectura
 			File archivo = new File(this.direccionArchivo);
-			if (!archivo.exists()) {
-				archivo.createNewFile();
+			FileReader lector = new FileReader(archivo);
+			BufferedReader bufferLector = new BufferedReader(lector);
+
+			// Leer el contenido del archivo línea por línea
+			String linea;
+			String contenido = cafeteria.getNombre()+","+cafeteria.getDireccion()+","+cafeteria.getRedesSociales();
+			while ((linea = bufferLector.readLine()) != null) {
+				if (linea.startsWith("Nombre:")) {
+					// Si la línea empieza con "Edad:", modificar el valor de la edad
+					linea = "Nombre:";
+				}
+				contenido += linea + "\n";
 			}
-			// Comprobamos si existe
-			FileReader fileReader = new FileReader(archivo);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			//Lee cada linea del archivo hasta que la linea sea nula
-			while ((textoArchivo = bufferedReader.readLine()) != null) {
-				String[] data = textoArchivo.split(",");
-			}
-			//Con eso corroboramos que el cliente no esta registrado por RUT
-			fileReader.close();
-			bufferedReader.close();
+
+			// Cerrar el archivo de lectura
+			bufferLector.close();
+			lector.close();
+
+			// Abrir el archivo de texto en modo de escritura
+			FileWriter escritor = new FileWriter(archivo);
+			BufferedWriter bufferEscritor = new BufferedWriter(escritor);
+
+			// Escribir el contenido modificado en el archivo de texto
+			bufferEscritor.write(contenido);
+
+			// Cerrar el archivo de escritura
+			bufferEscritor.close();
+			escritor.close();
+			System.out.println("El archivo ha sido modificado correctamente.");
 			return true;
 		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
+			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 }

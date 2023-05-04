@@ -42,6 +42,11 @@ public class agregarCafeView extends JFrame{
 				if(gramos>0 && !size.isEmpty() && mmAgua>0 && !ingredienteExtra.isEmpty()){
 					cafeteriaController cafeteriaController=new cafeteriaController();
 					boolean results=cafeteriaController.agregarCafe(new Cafe(gramos,mmAgua,size,ingredienteExtra));
+					if(results){
+						JOptionPane.showMessageDialog(null,"Se agrego correctamente");
+					}else{
+						JOptionPane.showMessageDialog(null,"Ha ocurrido un problema");
+					}
 				}
 			}
 		});
