@@ -4,6 +4,8 @@ import controller.cafeteriaController;
 import model.Cafe;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class eliminarCafeView extends JFrame {
@@ -23,7 +25,13 @@ public class eliminarCafeView extends JFrame {
 		ActionListeners();	}
 
 	public void ActionListeners() {
-		throw new UnsupportedOperationException();
+		cancelarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new paginaPrincipalView();
+				dispose();
+			}
+		});
 	}
 
 	public void inicializarComboBox() {

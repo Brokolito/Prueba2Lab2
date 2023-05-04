@@ -50,5 +50,12 @@ public class agregarCafeView extends JFrame{
 				}
 			}
 		});
+		cancelarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new paginaPrincipalView();
+				dispose();
+			}
+		});
 	}
 }
