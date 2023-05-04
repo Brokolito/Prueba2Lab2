@@ -27,10 +27,7 @@ public class GestorDatos {
 			//Lee cada linea del archivo hasta que la linea sea nula
 			while ((textoArchivo = bufferedReader.readLine()) != null) {
 				String[] data = textoArchivo.split(",");
-				if(data.length>=6){
 					cafesEncontrados.add(new Cafe(Integer.parseInt(data[0]),Integer.parseInt(data[1]),data[2],data[3]));
-
-				}
 			}
 			//Con eso corroboramos que el cliente no esta registrado por RUT
 			fileReader.close();
